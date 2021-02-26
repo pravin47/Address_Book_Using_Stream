@@ -21,7 +21,9 @@ class MenuBar {
 			System.out.println("4 Delete The Contact");
 			System.out.println("5 Search The Contact Using City");
 			System.out.println("6 Search The Contact Using State");
-			System.out.println("7 Exit");
+			System.out.println("7 Number Of Contacts By Same City");
+			System.out.println("8 Number Of Contacts By Same State");
+			System.out.println("9 Exit");
 			int choice = sc.nextInt();
 			switch (choice) {
 
@@ -45,6 +47,12 @@ class MenuBar {
 				searchByState();
 				break;
 			case 7:
+				countByCity();
+				break;
+			case 8:
+				countByState();
+				break;
+			case 9:
 				ans = false;
 				break;
 
@@ -99,6 +107,38 @@ class MenuBar {
 	public static void show() {
 
 		System.out.println(AddressBook);
+	}
+
+	public static void countByCity() {
+		System.out.println("Enter The City Name You Want To Count Contacts");
+		String city = sc.next();
+		int count = 0;
+		for (Book b : AddressBook) {
+			if (b.getcity().equals(city)) {
+				count++;
+				System.out.println("Number Of Person Is :" + count);
+				break;
+			} else {
+				System.out.println("City Does Not Exist");
+			}
+		}
+
+	}
+
+	public static void countByState() {
+
+		System.out.println("Enter The State Name You Want To Count Contacts");
+		String state = sc.next();
+		int count = 0;
+		for (Book b : AddressBook) {
+			if (b.getstate().equals(state)) {
+				count++;
+				System.out.println("Number Of Person Is :" + count);
+				break;
+			} else {
+				System.out.println("State Does Not Exist");
+			}
+		}
 	}
 
 	public static void searchByCity() {
