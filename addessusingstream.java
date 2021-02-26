@@ -18,7 +18,8 @@ class MenuBar {
 			System.out.println("1 Add New Contact");
 			System.out.println("2 Show");
 			System.out.println("3 Edit The Contact ");
-			System.out.println("4 Exit");
+			System.out.println("4 Delete The Contact");
+			System.out.println("5 Exit");
 			int choice = sc.nextInt();
 			switch (choice) {
 
@@ -32,7 +33,12 @@ class MenuBar {
 				editContact();
 				break;
 			case 4:
+				deleteContact();
+				break;
+			case 5:
 				ans = false;
+				break;
+
 			}
 
 		}
@@ -65,6 +71,20 @@ class MenuBar {
 		System.out.println(AddressBook);
 	}
 
+	public static void deleteContact() {
+		System.out.println("Enter The First Name You Want To Delete");
+		String fName = sc.next();
+		for (int i = 0; i < AddressBook.size(); i++) {
+
+			if (AddressBook.get(i).getfirstName().equalsIgnoreCase(fName)) {
+				AddressBook.remove(i);
+				System.out.println("Contact Delete Succesfully");
+			}else {
+				System.out.println("Contact Does Not Exist");
+			}
+		}
+	}
+
 	public static void editContact() {
 
 		System.out.println("Enter The First Name You Want To Edit");
@@ -90,7 +110,7 @@ class MenuBar {
 				String email = sc.next();
 				Book obj = new Book(fName, lName, address, city, state, zip, phoneNumber, email);
 				AddressBook.add(obj);
-			}else {
+			} else {
 				System.out.println("Contact Does Not Exist");
 			}
 
@@ -115,3 +135,92 @@ class Book {
 				+ " State: " + state + " ZipCode: " + " " + zip + " PhoneNumber: " + phoneNumber + " EmailId: " + email
 				+ " ] ";
 	}
+
+	Book(String fName, String lName, String address, String city, String state, String zip, String phoneNumber,
+			String email) {
+		this.fName = fName;
+		this.lName = lName;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+
+	public void setfirstName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getfirstName() {
+		return fName;
+	}
+
+	public void setlastName(String lName) {
+		this.lName = lName;
+	}
+
+	public String getlastName() {
+		return lName;
+	}
+
+	public void setaddress(String address) {
+		this.address = address;
+	}
+
+	public String getaddress() {
+		return address;
+	}
+
+	public void setcity(String city) {
+		this.city = city;
+	}
+
+	public String getcity() {
+		return city;
+	}
+
+	public void setstate(String state) {
+		this.state = state;
+	}
+
+	public String getstate() {
+		return state;
+	}
+
+	public void setzip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getzip() {
+		return zip;
+	}
+
+	public void setphoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getphoneNumber() {
+		return phoneNumber;
+	}
+
+	public void getemail(String email) {
+		this.email = email;
+	}
+
+	public String getemail() {
+		return email;
+	}
+}
+
+public class AddressBookStr {
+
+	public static void main(String args[]) {
+
+		System.out.println("Welcome To Address Book Programmin");
+		MenuBar obj = new MenuBar();
+		obj.optionChoice();
+
+	}
+
+}
