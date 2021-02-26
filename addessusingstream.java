@@ -45,25 +45,29 @@ class MenuBar {
 	}
 
 	public static void newContact() {
-		System.out.println("Enter The First Name");
-		String fName = sc.next();
-		System.out.println("Enter The Last Name");
-		String lName = sc.next();
-		System.out.println("Enter The Address");
-		String address = sc.next();
-		System.out.println("Enter The City");
-		String city = sc.next();
-		System.out.println("Enter The State");
-		String state = sc.next();
-		System.out.println("Enter The Zip Code");
-		String zip = sc.next();
-		System.out.println("Enter The Phone Number");
-		String phoneNumber = sc.next();
-		System.out.println("Enter The Email Address");
-		String email = sc.next();
-		Book obj = new Book(fName, lName, address, city, state, zip, phoneNumber, email);
-		AddressBook.add(obj);
+		System.out.println("Enter The How Many Person You Want To Add");
+		int no = sc.nextInt();
+		for (int i = 0; i<no; i++) {
+			System.out.println("Enter The First Name");
+			String fName = sc.next();
+			System.out.println("Enter The Last Name");
+			String lName = sc.next();
+			System.out.println("Enter The Address");
+			String address = sc.next();
+			System.out.println("Enter The City");
+			String city = sc.next();
+			System.out.println("Enter The State");
+			String state = sc.next();
+			System.out.println("Enter The Zip Code");
+			String zip = sc.next();
+			System.out.println("Enter The Phone Number");
+			String phoneNumber = sc.next();
+			System.out.println("Enter The Email Address");
+			String email = sc.next();
+			Book obj = new Book(fName, lName, address, city, state, zip, phoneNumber, email);
+			AddressBook.add(obj);
 
+		}
 	}
 
 	public static void show() {
@@ -79,7 +83,7 @@ class MenuBar {
 			if (AddressBook.get(i).getfirstName().equalsIgnoreCase(fName)) {
 				AddressBook.remove(i);
 				System.out.println("Contact Delete Succesfully");
-			}else {
+			} else {
 				System.out.println("Contact Does Not Exist");
 			}
 		}
