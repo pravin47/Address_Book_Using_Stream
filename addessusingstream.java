@@ -8,7 +8,7 @@ import java.util.stream.*;
 class MenuBar {
 
 	static Scanner sc = new Scanner(System.in);
-
+	
 	static List<Book> AddressBook = new LinkedList<Book>();
 
 	public static void optionChoice() {
@@ -24,7 +24,8 @@ class MenuBar {
 			switch (choice) {
 
 			case 1:
-				newContact();
+			MenuBar m = new MenuBar();
+				m.newContact();
 				break;
 			case 2:
 				show();
@@ -44,12 +45,15 @@ class MenuBar {
 		}
 	}
 
-	public static void newContact() {
+	public void newContact() {
 		System.out.println("Enter The How Many Person You Want To Add");
 		int no = sc.nextInt();
 		for (int i = 0; i<no; i++) {
 			System.out.println("Enter The First Name");
 			String fName = sc.next();
+			if (checkDuplicate(fName)) {
+				System.out.println("Person is already exist");
+			} else {
 			System.out.println("Enter The Last Name");
 			String lName = sc.next();
 			System.out.println("Enter The Address");
@@ -66,10 +70,22 @@ class MenuBar {
 			String email = sc.next();
 			Book obj = new Book(fName, lName, address, city, state, zip, phoneNumber, email);
 			AddressBook.add(obj);
+		
+			}
 
 		}
+	
 	}
-
+	public boolean checkDuplicate(String fname) {
+		int flag = 0;
+		for (Book p : AddressBook) {
+			if (p.getfirstName().equals(fname)) {
+				flag = 1;
+				break;
+			}
+		}
+		return flag == 1;
+	}
 	public static void show() {
 
 		System.out.println(AddressBook);
