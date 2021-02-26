@@ -3,6 +3,7 @@ package com.address.book.stream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.*;
 
 class MenuBar {
 
@@ -10,13 +11,14 @@ class MenuBar {
 
 	static List<Book> AddressBook = new LinkedList<Book>();
 
-	public void optionChoice() {
+	public static void optionChoice() {
 		boolean ans = true;
 		while (ans != false) {
 			System.out.println("Please Enter Your Choice");
 			System.out.println("1 Add New Contact");
 			System.out.println("2 Show");
-			System.out.println("3 Exit");
+			System.out.println("3 Edit The Contact ");
+			System.out.println("4 Exit");
 			int choice = sc.nextInt();
 			switch (choice) {
 
@@ -27,6 +29,9 @@ class MenuBar {
 				show();
 				break;
 			case 3:
+				editContact();
+				break;
+			case 4:
 				ans = false;
 			}
 
@@ -58,9 +63,39 @@ class MenuBar {
 	public static void show() {
 
 		System.out.println(AddressBook);
-
 	}
 
+	public static void editContact() {
+
+		System.out.println("Enter The First Name You Want To Edit");
+		String fName = sc.next();
+		for (int i = 0; i < AddressBook.size(); i++) {
+
+			if (AddressBook.get(i).getfirstName().equalsIgnoreCase(fName)) {
+				System.out.println(AddressBook.get(i));
+				System.out.println("Entet The Details Again\n");
+				System.out.println("Enter The Last Name");
+				String lName = sc.next();
+				System.out.println("Enter The Address");
+				String address = sc.next();
+				System.out.println("Enter The City");
+				String city = sc.next();
+				System.out.println("Enter The State");
+				String state = sc.next();
+				System.out.println("Enter The Zip Code");
+				String zip = sc.next();
+				System.out.println("Enter The Phone Number");
+				String phoneNumber = sc.next();
+				System.out.println("Enter The Email Address");
+				String email = sc.next();
+				Book obj = new Book(fName, lName, address, city, state, zip, phoneNumber, email);
+				AddressBook.add(obj);
+			}else {
+				System.out.println("Contact Does Not Exist");
+			}
+
+		}
+	}
 }
 
 class Book {
@@ -80,92 +115,3 @@ class Book {
 				+ " State: " + state + " ZipCode: " + " " + zip + " PhoneNumber: " + phoneNumber + " EmailId: " + email
 				+ " ] ";
 	}
-
-	Book(String fName, String lName, String address, String city, String state, String zip, String phoneNumber,
-			String email) {
-		this.fName = fName;
-		this.lName = lName;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-	}
-
-	public void setfirstName(String fName) {
-		this.fName = fName;
-	}
-
-	public String getfirstName() {
-		return fName;
-	}
-
-	public void setlastName(String lName) {
-		this.lName = lName;
-	}
-
-	public String getlastName() {
-		return lName;
-	}
-
-	public void setaddress(String address) {
-		this.address = address;
-	}
-
-	public String getaddress() {
-		return address;
-	}
-
-	public void setcity(String city) {
-		this.city = city;
-	}
-
-	public String getcity() {
-		return city;
-	}
-
-	public void setstate(String state) {
-		this.state = state;
-	}
-
-	public String getstate() {
-		return state;
-	}
-
-	public void setzip(String zip) {
-		this.zip = zip;
-	}
-
-	public String getzip() {
-		return zip;
-	}
-
-	public void setphoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getphoneNumber() {
-		return phoneNumber;
-	}
-
-	public void getemail(String email) {
-		this.email = email;
-	}
-
-	public String getemail() {
-		return email;
-	}
-}
-
-public class AddressBookStr {
-
-	public static void main(String args[]) {
-
-		System.out.println("Welcome To Address Book Programmin");
-		MenuBar obj = new MenuBar();
-		obj.optionChoice();
-
-	}
-
-}
