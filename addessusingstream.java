@@ -8,7 +8,7 @@ import java.util.stream.*;
 class MenuBar {
 
 	static Scanner sc = new Scanner(System.in);
-	
+
 	static List<Book> AddressBook = new LinkedList<Book>();
 
 	public static void optionChoice() {
@@ -19,12 +19,14 @@ class MenuBar {
 			System.out.println("2 Show");
 			System.out.println("3 Edit The Contact ");
 			System.out.println("4 Delete The Contact");
-			System.out.println("5 Exit");
+			System.out.println("5 Search The Contact Using City");
+			System.out.println("6 Search The Contact Using State");
+			System.out.println("7 Exit");
 			int choice = sc.nextInt();
 			switch (choice) {
 
 			case 1:
-			MenuBar m = new MenuBar();
+				MenuBar m = new MenuBar();
 				m.newContact();
 				break;
 			case 2:
@@ -37,6 +39,12 @@ class MenuBar {
 				deleteContact();
 				break;
 			case 5:
+				searchByCity();
+				break;
+			case 6:
+				searchByState();
+				break;
+			case 7:
 				ans = false;
 				break;
 
@@ -48,47 +56,79 @@ class MenuBar {
 	public void newContact() {
 		System.out.println("Enter The How Many Person You Want To Add");
 		int no = sc.nextInt();
-		for (int i = 0; i<no; i++) {
+		for (int i = 0; i < no; i++) {
 			System.out.println("Enter The First Name");
 			String fName = sc.next();
 			if (checkDuplicate(fName)) {
 				System.out.println("Person is already exist");
 			} else {
-			System.out.println("Enter The Last Name");
-			String lName = sc.next();
-			System.out.println("Enter The Address");
-			String address = sc.next();
-			System.out.println("Enter The City");
-			String city = sc.next();
-			System.out.println("Enter The State");
-			String state = sc.next();
-			System.out.println("Enter The Zip Code");
-			String zip = sc.next();
-			System.out.println("Enter The Phone Number");
-			String phoneNumber = sc.next();
-			System.out.println("Enter The Email Address");
-			String email = sc.next();
-			Book obj = new Book(fName, lName, address, city, state, zip, phoneNumber, email);
-			AddressBook.add(obj);
-		
+				System.out.println("Enter The Last Name");
+				String lName = sc.next();
+				System.out.println("Enter The Address");
+				String address = sc.next();
+				System.out.println("Enter The City");
+				String city = sc.next();
+				System.out.println("Enter The State");
+				String state = sc.next();
+				System.out.println("Enter The Zip Code");
+				String zip = sc.next();
+				System.out.println("Enter The Phone Number");
+				String phoneNumber = sc.next();
+				System.out.println("Enter The Email Address");
+				String email = sc.next();
+				Book obj = new Book(fName, lName, address, city, state, zip, phoneNumber, email);
+				AddressBook.add(obj);
+
 			}
 
 		}
-	
+
 	}
+
 	public boolean checkDuplicate(String fname) {
 		int flag = 0;
-		for (Book p : AddressBook) {
-			if (p.getfirstName().equals(fname)) {
+		for (Book b : AddressBook) {
+			if (b.getfirstName().equals(fname)) {
 				flag = 1;
 				break;
 			}
 		}
 		return flag == 1;
 	}
+
 	public static void show() {
 
 		System.out.println(AddressBook);
+	}
+
+	public static void searchByCity() {
+		System.out.println("Enter The City You Want To Search");
+		String city = sc.next();
+		for (Book b : AddressBook) {
+			if (b.getcity().equals(city)) {
+
+				System.out.println(b);
+				break;
+			} else {
+				System.out.println("City Does Not Exist");
+			}
+		}
+	}
+
+	public static void searchByState() {
+
+		System.out.println("Enter The State You Want To Search");
+		String state = sc.next();
+		for (Book b : AddressBook) {
+			if (b.getstate().equals(state)) {
+
+				System.out.println(b);
+				break;
+			} else {
+				System.out.println("State Does Not Exist");
+			}
+		}
+
 	}
 
 	public static void deleteContact() {
